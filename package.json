@@ -1,0 +1,33 @@
+{
+  "name": "ao-changeset-base",
+  "version": "0.0.0",
+  "description": "Component Mixin to validate and execute ember-changeset's under routes",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "ember build",
+    "start": "ember server",
+    "test": "ember try:each"
+  },
+  "repository": "https://github.com/gmarkv10/ao-changeset-base",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "author": "Gabe Markarian",
+  "license": "MIT",
+  "keywords": [
+    "ember-addon",
+    "changeset",
+    "validations",
+    "mixin"
+  ],
+  "dependencies": {
+    "ember-changeset": "git+https://github.com/gmarkv10/ember-changeset.git",
+    "ember-changeset-validations": "1.2.4"
+  },
+  "ember-addon": {
+    "configPath": "tests/dummy/config"
+  }
+}
