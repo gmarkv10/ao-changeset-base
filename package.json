@@ -1,6 +1,6 @@
 {
   "name": "ao-changeset-base",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Component Mixin to validate and execute ember-changeset's under routes",
   "directories": {
     "doc": "doc",
