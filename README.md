@@ -1,6 +1,6 @@
 # Ao-changeset-base
 
-This README outlines the details of collaborating on this Ember addon.
+The AnchorOps changeset-base Mixin abstracts the application of changes and handling of changeset validation errors. An extending component is endowed with two actions onSave and onClose which will handle the corresponding 'positive' and 'negative' interactions in ember, leverage the changeset methods, and then continue bubbling those actions up the component chain.
 
 ## Installation
 
