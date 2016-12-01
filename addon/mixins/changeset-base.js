@@ -56,6 +56,7 @@ export default Ember.Mixin.create({
 					//changeset.rollback(); ?
 				}
 			}
+			this.set('changesetErrorKeys', []);
 			changeset.execute(); //this is safe, won't result in any changes if there are errors
 			Ember.run.schedule('actions', this, function() {
 				this.sendAction('onSave', forceClose || force); 
@@ -78,6 +79,7 @@ export default Ember.Mixin.create({
 				this.set('changesetErrorKeys', changesetErrorKeys); 
 				this.get('handleOnCloseErrors');
 			} else {
+				this.set('changesetErrorKeys', []);
 				changeset.execute();
 				//changeset.rollback(); ?
 			}
