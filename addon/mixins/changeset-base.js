@@ -12,7 +12,8 @@ export default Ember.Mixin.create({
 		 * 4. beforeSave/Validate = undefined : Run the rest of the save action (as if no beforeSave was called)
 		 */
 		onSave(force){
-			this.set('onSaveFired', !(this.get('onSaveFired'))); //can be used to listen for all onSave events
+			this.notifyPropertyChange('onSaveFired');
+			
 			let changeset = this.get(`${this.get('changeset')}`);
 			let forceClose;
 
@@ -47,7 +48,9 @@ export default Ember.Mixin.create({
 					let changesetErrors = changeset.get('errors').map((err) => {
 						return err.validation[ZERO]; 
 					});
-					this.set('changesetErrors', changesetErrors); 
+					let changesetErrorKeys = Object.keys(changeset.get('error'));
+					this.set('changesetErrors', changesetErrors);
+					this.set('changesetErrorKeys', changesetErrorKeys); 
 					this.get('handleOnSaveErrors');
 					return false; //stop propagation
 					//changeset.rollback(); ?
@@ -60,7 +63,7 @@ export default Ember.Mixin.create({
 			return false; //stop propagation, use explicit send action above
 		},
 		onClose(force){
-			this.set('onCloseFired', !(this.get('onCloseFired'))); //can be used to listen for all onClose events
+			this.notifyPropertyChange('onCloseFired');
 			
 			let changeset = this.get(`${this.get('changeset')}`);
 				
@@ -69,8 +72,10 @@ export default Ember.Mixin.create({
 				this.set('isInvalid', true);
 				let changesetErrors = changeset.get('errors').map((err) => {
 					return err.validation[ZERO]; 
-				}); 
+				});
+				let changesetErrorKeys = Object.keys(changeset.get('error'));
 				this.set('changesetErrors', changesetErrors);
+				this.set('changesetErrorKeys', changesetErrorKeys); 
 				this.get('handleOnCloseErrors');
 			} else {
 				changeset.execute();
