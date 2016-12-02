@@ -1,40 +1,14 @@
 import Ember from 'ember';
 const ZERO = 0;
 export default Ember.Mixin.create({
-	getSimpleError(){
-		let changeset = this.get(`${this.get('changeset')}`);
-		changeset.validate();
-		let simpleChangesetError = {};
-		let changesetError = changeset.get('error');
-
-		let changesetErrorKeys = Object.keys(changesetError);
-		//set the property to be used for proof of concept
-		this.set('changesetErrorKeys', changesetErrorKeys); 
-		changesetErrorKeys.forEach(function(key){
-			if( changesetError.hasOwnProperty(key) ){ 
-				simpleChangesetError[key] = changesetError[key].validation[ZERO];
-			} 
-		});
-		//return a collection of keys that map to their errors
-		return simpleChangesetError;
-	},
 	actions: {
-		revalidate(){
+		setErrors(){
 			let changeset = this.get(`${this.get('changeset')}`);
 			changeset.validate();
-			let simpleChangesetError = {};
 			let changesetError = changeset.get('error');
-
 			let changesetErrorKeys = Object.keys(changesetError);
 			//set the property to be used for proof of concept
 			this.set('changesetErrorKeys', changesetErrorKeys); 
-			changesetErrorKeys.forEach(function(key){
-				if( changesetError.hasOwnProperty(key) ){ 
-					simpleChangesetError[key] = changesetError[key].validation[ZERO];
-				} 
-			});
-			//return a collection of keys that map to their errors
-			return simpleChangesetError;
 		},
 		/**
 		 * There are 4 outcomes when a beforeSave/Validate function is given in the extending component
